@@ -1,8 +1,11 @@
+import { BrowserRouter } from "react-router-dom";
+import AppController from "./AppController";
+
 function App() {
   return (
-    <div className="App text-center flex justify-center items-center h-10 w-full text-blue-600 font-medium">
-      Huddle Now Extension
-    </div>
+    <BrowserRouter>
+          <AppController />
+    </BrowserRouter>
   );
 }
 
