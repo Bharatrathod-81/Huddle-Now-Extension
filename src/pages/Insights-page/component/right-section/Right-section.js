@@ -16,7 +16,7 @@ const RightSection = ({selectedMeeting,setOpenLeftSection}) => {
     <MainContainer>
         <InsightHeader selectedMeeting={selectedMeeting} setOpenLeftSection={setOpenLeftSection} setShowTranscript={setShowTranscript} showTranscript={showTranscript}/>
 
-        <div className='px-32 overflow-auto pb-4'>
+        <div className='px-32 overflow-auto pb-4 insight-right-scroll'>
           {showTranscript ?
             <Transcript selectedMeeting={selectedMeeting}/>
             :

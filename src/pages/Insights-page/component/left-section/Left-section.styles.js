@@ -1,12 +1,12 @@
 import tw from "tailwind-styled-components";
 
 export const MainContainer = tw.div`
-left-section 
-border-r 
+
 w-[350px] 
-p-7
-overflow-auto
-border
+my-7
+px-7
+overflow-y-auto
+
 `
 
 export const AllDayMeetingContainer = tw.div`

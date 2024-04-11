@@ -5,7 +5,7 @@ import SideBar from '../../component/side-bar/Side-bar';
 
 const PostLogin = () => {
   return (
-    <div className='flex'>
+    <div className='flex h-screen '>
       <SideBar/>
       <Routes>
         <Route path="/insights" element={<InsightPage />}/>

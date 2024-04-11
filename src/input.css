@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.insight-right-scroll {
+
+    height: calc(100vh - 13%);
+    overflow-y: auto;
+
+}
