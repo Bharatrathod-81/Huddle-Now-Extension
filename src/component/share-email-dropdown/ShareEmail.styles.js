@@ -8,7 +8,7 @@ rounded-lg
 pb-5
 absolute
 bg-white
-bottom-0
+bottom-10
 
 `
 

@@ -601,6 +601,10 @@ video {
   bottom: 0.25rem;
 }
 
+.bottom-6 {
+  bottom: 1.5rem;
+}
+
 .z-50 {
   z-index: 50;
 }
