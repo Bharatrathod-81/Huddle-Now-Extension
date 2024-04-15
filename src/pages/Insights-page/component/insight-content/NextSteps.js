@@ -1,12 +1,16 @@
 import React from "react";
 import { Icon, InsightWrapper, Title, TitleWrapper, ContentList, ListItem, TaskItem } from "./Insight-content.styles";
 
-const Nextsteps = ({selectedMeeting}) => {
+const Nextsteps = ({selectedMeeting, insightsData}) => {
 
-    const contents = ["Sed et massa quis magna faucibus sodales sed ut magna.","Donec ac ipsum ac est consectetur ornare nec ut mi.","Nam non elit ut elit facilisis sodales eu vitae lacus.","Sed pharetra massa fermentum varius viverra."]
+    let contents = [];
 
     if(selectedMeeting?._id){
-        // add fetched data
+        if(insightsData?.insights[0]?.insights){
+            contents = insightsData?.insights[0]?.insights?.split("\n");
+        }
+    }else{
+        contents = ["Sed et massa quis magna faucibus sodales sed ut magna.","Donec ac ipsum ac est consectetur ornare nec ut mi.","Nam non elit ut elit facilisis sodales eu vitae lacus.","Sed pharetra massa fermentum varius viverra."];
     }
 
     return(<InsightWrapper>
@@ -31,11 +35,13 @@ const Nextsteps = ({selectedMeeting}) => {
 
                         <ListItem key={index}>
 
-                            <Icon>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3.75 10L16.25 10M16.25 10L10.625 4.375M16.25 10L10.625 15.625" stroke="#D4D4D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </Icon>
+                            {content &&
+                                <Icon>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3.75 10L16.25 10M16.25 10L10.625 4.375M16.25 10L10.625 15.625" stroke="#D4D4D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </Icon>
+                            }
 
                             {content}
                             

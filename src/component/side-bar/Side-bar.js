@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SideBarColBottom, SideBarColTop, SideBarDropdownEmailField, SideBarDropdownEmailText, 
          SideBarDropdownSignOutText, SideBarDropdownSignoutField, SideBarIcon, SideBarNav, SideBarNavLink, 
          SideBarNavLinkText, SideBarProfileDropdownWrapper, SideBarProfileWrapper, SideBarWrapper } from "./Side-bar.styles";
+import { setToken, tokenAtom } from "../../atom/LoginAtom/useLoginAtom";
+import { useAtom } from "jotai";
 
 const SideBar = ({clickOutSide}) => {
 
+    const navigate = useNavigate();
+    const [userData] = useAtom(tokenAtom);
     const [isOpen, setIsOpen] = useState(false);
 
     // Function to toggle the dropdown state
@@ -18,6 +22,24 @@ const SideBar = ({clickOutSide}) => {
     useEffect(() => {
         setIsOpen(false);
     },[clickOutSide])
+
+    const sendTokenToExtension = (token) => {
+        const extensionId = userData?.extensionId; // Update with your extension ID
+        chrome.runtime.sendMessage(extensionId, { type:'removeToken'}, response => {
+          if (chrome.runtime.lastError) {
+            console.error(chrome.runtime.lastError.message);
+            return;
+          }
+          console.log('Message sent to extension:');
+        });
+      }
+
+    const signOutHandler = () => {
+        sendTokenToExtension();
+        setToken({});
+        navigate('/');
+        window.location.reload();
+    }
 
   return (
 
@@ -100,7 +122,7 @@ const SideBar = ({clickOutSide}) => {
                         <path d="M13.125 7.5V4.375C13.125 3.33947 12.2855 2.5 11.25 2.5L6.25 2.5C5.21447 2.5 4.375 3.33947 4.375 4.375L4.375 15.625C4.375 16.6605 5.21447 17.5 6.25 17.5H11.25C12.2855 17.5 13.125 16.6605 13.125 15.625V12.5M15.625 12.5L18.125 10M18.125 10L15.625 7.5M18.125 10L7.5 10" stroke="#A3A3A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
 
-                        <SideBarDropdownSignOutText>Sign out</SideBarDropdownSignOutText>    
+                        <SideBarDropdownSignOutText onClick={signOutHandler}>Sign out</SideBarDropdownSignOutText>    
 
                     </SideBarDropdownSignoutField>
 

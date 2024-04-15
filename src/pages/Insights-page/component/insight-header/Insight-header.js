@@ -34,9 +34,13 @@ const InsightHeader= ({selectedMeeting,setOpenLeftSection,setShowTranscript,show
 
                     <InsightTranscriptHead>
 
-                        <InsightTranscriptTitle>{selectedMeeting?.title}</InsightTranscriptTitle>
+                        <InsightTranscriptTitle>{selectedMeeting?.title || 'Demo meeting'}</InsightTranscriptTitle>
 
+                        {selectedMeeting?.title ? 
                         <InsightTranscriptTime>{day}, {selectedMeeting?.startTime} - {selectedMeeting?.endTime}</InsightTranscriptTime>
+                        :
+                        <InsightTranscriptTime>Today, 4:00 - 4:15 pm</InsightTranscriptTime>
+                        }
 
                     </InsightTranscriptHead>
 

@@ -47,7 +47,6 @@ export const ListItem = tw.p`
 
 flex
 gap-3.5
-items-center
 text-base
 text-neutral-500
 
@@ -73,5 +72,11 @@ gap-3.5
 items-center
 text-base
 text-yellow-600
+border
+border-dashed
+border-yellow-600
+bg-yellow-50
+p-6
+rounded
 
 `

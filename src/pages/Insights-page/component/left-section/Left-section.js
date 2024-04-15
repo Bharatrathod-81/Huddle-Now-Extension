@@ -2,34 +2,36 @@ import React, { useEffect, useState } from 'react'
 import { MainContainer, AllDayMeetingContainer, DateTitleContainer } from './Left-section.styles'
 import MeetingCard from '../meeting-card/Meeting-card'
 import GetDayFormat from '../../../../component/common/GetDayFormat';
+import DemoInsight from '../../../../component/common/Demo';
 
-
-const LeftSection = ({selectedMeeting, setSelectedMeeting, fetchedData}) => {
+const LeftSection = ({idFromExtension, selectedMeeting, setSelectedMeeting, fetchedData}) => {
 
     const [arrangedArr, setArrangedArr] = useState([]);
    
     const getArrangedArr = () => {
-        let allArrayData = fetchedData.data?.reduce((result, meeting) => {
-            
-            const [day, month, year] = meeting?.transcripts[0]?.transcripts[0]?.timeStamp?.slice(0,10)?.split('/')?.map(e => parseInt(e));
-            const idxNo = (new Date().getFullYear() - year)+month+day;
+        
+            let allArrayData = fetchedData?.data?.reduce((result, meeting) => {
+                if(meeting?.transcripts[0]){
+                    const [day, month, year] = meeting?.transcripts[0]?.transcripts[0]?.timeStamp?.slice(0,10)?.split('/')?.map(e => parseInt(e));
+                    const idxNo = (new Date().getFullYear() - year)+month+day;
 
-            if (!result[idxNo]) {
-                result[idxNo] = [];
-            }   
+                    if (!result[idxNo]) {
+                        result[idxNo] = [];
+                    }   
 
-            
-            result[idxNo].push(meeting);
-            return result;
-        }, []);
+                    
+                    result[idxNo].push(meeting);
+                    return result;
+                }else{
+                    return result;
+                }
+            }, []);
 
-        const sortedArr = allArrayData?.sort((a,b) => new Date(b[0]?.transcripts[0]?.transcripts[0]?.timeStamp).setHours(0,0,0,0) - new Date(a[0]?.transcripts[0]?.transcripts[0]?.timeStamp).setHours(0,0,0,0));
-
-        setArrangedArr(sortedArr);
+            const sortedArr = allArrayData?.sort((a,b) => new Date(b[0]?.transcripts[0]?.transcripts[0]?.timeStamp).setHours(0,0,0,0) - new Date(a[0]?.transcripts[0]?.transcripts[0]?.timeStamp).setHours(0,0,0,0));
+            setArrangedArr(sortedArr);
     };
 
     const clickHandler = (data) => {
-
         const startTime = data?.transcripts[0]?.transcripts[0]?.timeStamp?.slice(12);
         const endTime = data?.transcripts[0]?.transcripts?.at(-1)?.timeStamp?.slice(12);
 
@@ -41,14 +43,19 @@ const LeftSection = ({selectedMeeting, setSelectedMeeting, fetchedData}) => {
         getArrangedArr();
     },[fetchedData.data]);
 
+
     useEffect(() => {
-        if(arrangedArr.length > 0 && (!selectedMeeting?._id)){
+        if(arrangedArr.length > 0 && (!selectedMeeting?._id) && (!idFromExtension)){
             clickHandler(arrangedArr[0][0]);
+        }else if(idFromExtension){
+            clickHandler(fetchedData?.data?.find(e => e?.session_id === idFromExtension));
         }
     },[arrangedArr]);
 
+
   return (
     <MainContainer>
+        {(fetchedData.data.length === 0 && fetchedData.isFetched) && <DemoInsight/>}
         {arrangedArr.map((e,mainIdx) => 
            <AllDayMeetingContainer key={mainIdx}>
               <DateTitleContainer>{GetDayFormat(e[0]?.transcripts[0]?.transcripts[0]?.timeStamp)}</DateTitleContainer>
