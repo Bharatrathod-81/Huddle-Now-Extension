@@ -8,35 +8,17 @@ import Task from '../insight-content/Tasks';
 import Transcript from '../transcript/Transcript';
 import axios from 'axios';
 import { useLoading } from '../../../../atom/LoadingAtom/useLoading';
-import ApiLoader from '../../../../component/common/ApiLoader';
 import AttendeeGroup from '../../../../component/share-email-dropdown/ShareEmail';
 
 
-const RightSection = ({selectedMeeting,setOpenLeftSection}) => {
+const RightSection = ({selectedMeeting,setOpenLeftSection,insightsData}) => {
   
   const [showTranscript, setShowTranscript] = useState(false);
-  const [insightsData, setInsightsData] = useState([]);
   const [openSharePopup, setOpenSharePopup] = useState(false);
   const {isLoading ,startLoading, stopLoading } = useLoading();
   const token = JSON.parse(localStorage.getItem('userData'))
 
-  const getInsights = () => {
-    setOpenSharePopup(false)
-    startLoading();
-    setInsightsData([]);
-    axios.get(`http://localhost:4000/api/transcript/getinsights?key=${selectedMeeting?.session_id}`, {
-        headers: {
-            'Authorization': `Bearer ${token?.token}`,
-            'Content-Type': 'application/json',
-        },
-    }).then(res => {
-        stopLoading();
-        setInsightsData(res.data);
-      }).catch(err => {
-        stopLoading();
-        console.log(err);
-    });
-  };
+  
 
   const shareInsights = (body) => {
     const config = {
@@ -54,10 +36,7 @@ const RightSection = ({selectedMeeting,setOpenLeftSection}) => {
         console.log(err);
     });
   };
-
-  useEffect(() => {
-    getInsights();
-  },[selectedMeeting?.session_id]);
+console.log(insightsData,'insightsData');
 
   return (
     <MainContainer>

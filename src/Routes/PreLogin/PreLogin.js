@@ -13,7 +13,7 @@ const PreLogin = () => {
             <Route path="/:id?" element={<EmailVerification/>}/>
             <Route path="/shareLink/:id?" element={<EmailVerification/>}/>
             <Route path="/firstLogin/:extensionId?" element={<EmailVerification/>}/>
-            <Route path="/EmailInfo/:id?" element={<EmailVerificationInfo/>}/>
+            <Route path="/EmailInfo/:id?/:email?" element={<EmailVerificationInfo/>}/>
             <Route path="/check/:id" element={<CheckMagicLink/>}/>
             <Route path="*" element={<Errorpage/>}/>
         </Routes>

@@ -9,9 +9,11 @@ const EmailVerificationInfo = () => {
     const [userData] = useAtom(tokenAtom);
 
     const {id} = useParams();
+    const {email} = useParams();
+
 
     if(id){
-        setToken({...userData,extensionId:id});
+        setToken({...userData,extensionId:id ,email});
     }
 
     return(

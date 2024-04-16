@@ -4,7 +4,7 @@ import MeetingCard from '../meeting-card/Meeting-card'
 import GetDayFormat from '../../../../component/common/GetDayFormat';
 import DemoInsight from '../../../../component/common/Demo';
 
-const LeftSection = ({idFromExtension, selectedMeeting, setSelectedMeeting, fetchedData}) => {
+const LeftSection = ({idFromExtension, selectedMeeting, setSelectedMeeting, fetchedData, getInsights}) => {
 
     const [arrangedArr, setArrangedArr] = useState([]);
    
@@ -36,6 +36,7 @@ const LeftSection = ({idFromExtension, selectedMeeting, setSelectedMeeting, fetc
         const endTime = data?.transcripts[0]?.transcripts?.at(-1)?.timeStamp?.slice(12);
 
         setSelectedMeeting({...data, title:data?.transcripts[0]?.title, startTime, endTime});
+        getInsights(data?.session_id);
     }
 
 
@@ -47,7 +48,7 @@ const LeftSection = ({idFromExtension, selectedMeeting, setSelectedMeeting, fetc
     useEffect(() => {
         if(arrangedArr.length > 0 && (!selectedMeeting?._id) && (!idFromExtension)){
             clickHandler(arrangedArr[0][0]);
-        }else if(idFromExtension){
+        }else if(idFromExtension && arrangedArr.length > 0){
             clickHandler(fetchedData?.data?.find(e => e?.session_id === idFromExtension));
         }
     },[arrangedArr]);

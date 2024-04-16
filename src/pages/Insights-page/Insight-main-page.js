@@ -15,6 +15,7 @@ const InsightPage = () => {
     const [selectedMeeting, setSelectedMeeting] = useState({});
     const [openLeftSection, setOpenLeftSection] = useState(true);
     const [fetchedData, setFetchedData] = useState({isFetched:false, data:[]});
+    const [insightsData, setInsightsData] = useState([]);
     const [userData] = useAtom(tokenAtom);
     const token = JSON.parse(localStorage.getItem('userData'))
 
@@ -32,13 +33,35 @@ const InsightPage = () => {
                 setFetchedData({isFetched:true, data:[]});
             }else{
                 setFetchedData({isFetched:true, data:res.data});
+                // getInsights(res.data[0]?.session_id);
             }
+
             
         }).catch(err => {
             stopLoading();
             console.log(err);
         })
     };
+
+    const getInsights = (id) => {
+        if(id){
+            startLoading();
+            setInsightsData([]);
+            axios.get(`http://localhost:4000/api/transcript/getinsights?key=${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token?.token}`,
+                    'Content-Type': 'application/json',
+                },
+            }).then(res => {
+                stopLoading();
+                setInsightsData(res.data);
+              }).catch(err => {
+                stopLoading();
+                console.log(err);
+            });
+        }
+    };
+
 
     useEffect(() => {
         getAllTrnacript();
@@ -47,10 +70,10 @@ const InsightPage = () => {
     return (
         <div className="flex w-full" >
             
-            {openLeftSection && <LeftSection idFromExtension={id} setSelectedMeeting={setSelectedMeeting} selectedMeeting={selectedMeeting} fetchedData={fetchedData}/>}
+            {openLeftSection && <LeftSection idFromExtension={id} setSelectedMeeting={setSelectedMeeting} selectedMeeting={selectedMeeting} fetchedData={fetchedData} getInsights={getInsights}/>}
 
             {(selectedMeeting?._id || (fetchedData.data.length === 0 && fetchedData.isFetched)) && 
-                   <RightSection selectedMeeting={selectedMeeting} setOpenLeftSection={setOpenLeftSection}/>
+                   <RightSection selectedMeeting={selectedMeeting} setOpenLeftSection={setOpenLeftSection} insightsData={insightsData}/>
             }
         </div>
     );

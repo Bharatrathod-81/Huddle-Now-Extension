@@ -39,7 +39,9 @@ const Transcript = ({selectedMeeting}) => {
 
             <TranscriptCard key={index}>
 
-                <TranscriptProfile><TranscriptProfileImg style={{backgroundColor:`${userBgColor[data?.personName]?.color}`}}>{userBgColor[data?.personName]?.shortName}</TranscriptProfileImg></TranscriptProfile>
+            <TranscriptProfile>
+                <TranscriptProfileImg style={{backgroundColor:`${userBgColor[data?.personName]?.color}`, border:`1px solid ${userBgColor[data?.personName]?.border}`, color:`${userBgColor[data?.personName]?.text}` }}>{userBgColor[data?.personName]?.shortName}</TranscriptProfileImg>
+            </TranscriptProfile>
 
                 <TranscriptDetails>
 
