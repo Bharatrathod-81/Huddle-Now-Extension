@@ -54,7 +54,11 @@ const InsightPage = () => {
                 },
             }).then(res => {
                 stopLoading();
-                setInsightsData(res.data);
+                if(res.data?.insights){
+                    setInsightsData(res.data?.insights);
+                }else{
+                    setInsightsData(res.data);
+                }
               }).catch(err => {
                 stopLoading();
                 console.log(err);

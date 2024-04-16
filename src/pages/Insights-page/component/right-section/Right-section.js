@@ -61,15 +61,15 @@ console.log(insightsData,'insightsData');
             </div>
           }
 
-          <div className='h-10 m-7 mr-0 mb-8 mt-14 flex justify-end items-center relative'>
-            <div onClick={() => setOpenSharePopup(true)} className='border-2 cursor-pointer border-teal-600 bg-teal-50 h-full w-24 rounded-[50px] text-teal-600 flex gap-1 justify-center items-center'>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-              </svg>
-              Share
-            </div>
-            {openSharePopup && <AttendeeGroup setOpenSharePopup={setOpenSharePopup} shareInsights={shareInsights} selectedMeeting={selectedMeeting}/>}
+        </div>
+        <div className='h-10 mt-5 pr-36 flex justify-end items-center relative'>
+          <div onClick={() => setOpenSharePopup(true)} className='border-2 cursor-pointer border-teal-600 bg-teal-50 h-full w-24 rounded-[50px] text-teal-600 flex gap-1 justify-center items-center'>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+            </svg>
+            Share
           </div>
+          {openSharePopup && <AttendeeGroup setOpenSharePopup={setOpenSharePopup} shareInsights={shareInsights} selectedMeeting={selectedMeeting}/>}
         </div>
         
     </MainContainer>
