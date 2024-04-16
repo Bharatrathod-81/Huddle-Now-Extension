@@ -25,10 +25,11 @@ export const TranscriptProfileImg = tw.div`
 h-14
 w-14
 rounded-full
-bg-gray-200
 flex
 justify-center
 items-center
+text-xl
+font-medium
 
 `
 

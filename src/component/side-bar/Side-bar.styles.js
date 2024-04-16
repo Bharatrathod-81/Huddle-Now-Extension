@@ -61,7 +61,8 @@ export const SideBarProfileDropdownWrapper = tw.div`
 
 absolute
 bg-white
-w-[200px]
+w-min-[200px]
+w-fit
 left-[40px]
 bottom-0
 rounded

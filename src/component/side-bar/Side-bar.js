@@ -98,7 +98,13 @@ const SideBar = ({clickOutSide}) => {
 
             <SideBarProfileWrapper onClick={toggleDropdown}>
 
-                <img class="h-8 w-8 rounded-full bg-gray-200" src="#" alt="user"/>
+                {userData?.email ?
+                    <div className="h-8 w-8 rounded-full bg-gray-200 flex justify-center items-center text-3xl">
+                        <p className="flex justify-center items-center mb-2">{userData?.email[0]}</p>
+                    </div>
+                    :
+                    <img className="h-8 w-8 rounded-full bg-gray-200" src="#" alt="user"/>
+                }
 
             </SideBarProfileWrapper>
 
@@ -112,7 +118,7 @@ const SideBar = ({clickOutSide}) => {
                         <path d="M18.125 5.625V14.375C18.125 15.4105 17.2855 16.25 16.25 16.25H3.75C2.71447 16.25 1.875 15.4105 1.875 14.375V5.625M18.125 5.625C18.125 4.58947 17.2855 3.75 16.25 3.75H3.75C2.71447 3.75 1.875 4.58947 1.875 5.625M18.125 5.625V5.82726C18.125 6.47837 17.7872 7.08287 17.2327 7.42412L10.9827 11.2703C10.38 11.6411 9.61996 11.6411 9.01732 11.2703L2.76732 7.42412C2.21279 7.08287 1.875 6.47837 1.875 5.82726V5.625" stroke="#A3A3A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
 
-                        <SideBarDropdownEmailText>test@gmail.com</SideBarDropdownEmailText>    
+                        <SideBarDropdownEmailText>{userData?.email ? userData?.email:"test@gmail.com"}</SideBarDropdownEmailText>    
 
                     </SideBarDropdownEmailField>
 
