@@ -10,11 +10,7 @@ const Highlights = ({selectedMeeting, insightsData}) => {
             contents = insightsData?.insights[0]?.insights?.split("\n");
         }
     }else{
-        contents = ["Sed et massa quis magna faucibus sodales sed ut magna.",
-        "Donec ac ipsum ac est consectetur ornare nec ut mi.",
-        "Nam non elit ut elit facilisis sodales eu vitae lacus.",
-        "Sed pharetra massa fermentum varius viverra."
-        ];
+        contents = ["No specific highlights were mentioned during this meeting."];
     }
 
   return (

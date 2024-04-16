@@ -28,7 +28,7 @@ const LeftSection = ({idFromExtension, selectedMeeting, setSelectedMeeting, fetc
             }, []);
 
             const sortedArr = allArrayData?.sort((a,b) => new Date(b[0]?.transcripts[0]?.transcripts[0]?.timeStamp).setHours(0,0,0,0) - new Date(a[0]?.transcripts[0]?.transcripts[0]?.timeStamp).setHours(0,0,0,0));
-            setArrangedArr(sortedArr);
+            setArrangedArr(sortedArr?.map(e => e?.reverse()));
     };
 
     const clickHandler = (data) => {
@@ -60,7 +60,7 @@ const LeftSection = ({idFromExtension, selectedMeeting, setSelectedMeeting, fetc
         {arrangedArr.map((e,mainIdx) => 
            <AllDayMeetingContainer key={mainIdx}>
               <DateTitleContainer>{GetDayFormat(e[0]?.transcripts[0]?.transcripts[0]?.timeStamp)}</DateTitleContainer>
-              {e.map((e,idx) => <MeetingCard data={e} key={idx} selectedMeeting={selectedMeeting} clickHandler={clickHandler}/>)}
+              {e?.map((e,idx) => <MeetingCard data={e} key={idx} selectedMeeting={selectedMeeting} clickHandler={clickHandler}/>)}
            </AllDayMeetingContainer>
         )}
     </MainContainer>

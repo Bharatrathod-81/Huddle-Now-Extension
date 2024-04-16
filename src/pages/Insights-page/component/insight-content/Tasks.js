@@ -10,7 +10,11 @@ const Task = ({selectedMeeting, insightsData}) => {
             contents = insightsData?.insights[0]?.insights?.split("\n");
         }
     }else{
-        contents = ["Sed et massa quis magna faucibus sodales sed ut magna.","Donec ac ipsum ac est consectetur ornare nec ut mi.","Nam non elit ut elit facilisis sodales eu vitae lacus."];
+        contents = ["- Sri: Ensure the smooth functioning of the Huddle Now extension after launch. Deadline: Ongoing.",
+                    "- Bharat: Monitor user feedback and make any necessary adjustments to the extension's design. Deadline: Ongoing.",
+                    "- Dhanapal: Maintain the backend infrastructure to ensure fast and reliable performance of the extension. Deadline: Ongoing.",
+                    "- Paandi: Monitor system stability and scalability as user traffic increases. Deadline: Ongoing.",
+                  ];
     }
 
     return(<InsightWrapper>

@@ -11,7 +11,7 @@ const Overview = ({selectedMeeting, insightsData}) => {
             contents = [insightsData?.insights[0]?.insights]
         }
     }else{
-        contents = ["Sed et massa quis magna faucibus sodales sed ut magna.","Donec ac ipsum ac est consectetur ornare nec ut mi.","Nam non elit ut elit facilisis sodales eu vitae lacus."];
+        contents = ["The team discussed the readiness of the first version of the Huddle Now extension, which provides a summary, highlights, tasks, and next steps after each meeting. They confirmed that the extension is ready for launch and emphasized the importance of gathering user feedback for further improvements."];
         expert = 'Phasellus faucibus convallis maximus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam metus sem, sodales vitae arcu eget, egestas blandit diam.'
     }
 

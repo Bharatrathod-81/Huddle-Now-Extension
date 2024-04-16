@@ -10,7 +10,7 @@ const Nextsteps = ({selectedMeeting, insightsData}) => {
             contents = insightsData?.insights[0]?.insights?.split("\n");
         }
     }else{
-        contents = ["Sed et massa quis magna faucibus sodales sed ut magna.","Donec ac ipsum ac est consectetur ornare nec ut mi.","Nam non elit ut elit facilisis sodales eu vitae lacus.","Sed pharetra massa fermentum varius viverra."];
+        contents = ["The next steps include launching the Huddle Now extension and iterating based on user feedback to enhance its features further. The team is encouraged to keep communication channels open for any additional comments or concerns that may arise during the launch process."];
     }
 
     return(<InsightWrapper>
